@@ -87,10 +87,5 @@ export class DealsCreatePage {
 
   backButton() {
     this.viewCtrl.dismiss();
-  }
-
-  logForm() {	
-  	console.log(this.deal)
-  }
-
+  }s
 }
