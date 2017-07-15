@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Withdrawal History</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+	<ion-card *ngFor="let withdraw of withdraws">
+	  <ion-card-content>
+	  	<ion-grid>
+		    <ion-row>
+		      <ion-col>
+		      	<h4>{{ withdraw.id }}</h4>
+            <p>{{ withdraw.amount }}</p>
+            <p>{{ withdraw.status }}</p>
+		      </ion-col>
+		      <ion-col>
+            <p>{{ withdraw.created_at }}</p>
+            <p></p>
+		      </ion-col>
+		    </ion-row>
+		  </ion-grid>
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-fab right bottom>
+	  <button (click)="addNew()" ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

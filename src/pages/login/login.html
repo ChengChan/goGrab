@@ -1,0 +1,33 @@
+
+  <ion-content class="img-bg">
+    <form class="form">
+      
+        <div class="img-logo">
+          <img src="" alt="Logo">
+        </div>
+
+        <div class="btn-group-user">
+            <button class="btn-click-grabber" (click)="doLogin2()">Grabber</button>
+            <button class="btn-click-maker" (click)="doLogin()">Maker</button>
+        </div>
+        
+        <div class="txt-input-credentials">
+          <ion-item no-lines class="txt-input">
+            <ion-input class="txt-input-email" [(ngModel)]="username" type="text" name="email" placeholder="Email"></ion-input>
+          </ion-item>
+          <ion-item no-lines class="txt-input">
+            <ion-input class="txt-input-pwd" [(ngModel)]="password" type="password" name="password" placeholder="Password"></ion-input>
+            <ion-icon class="icon-pwd" name="ios-eye-outline" item-right></ion-icon>
+          </ion-item>
+        </div>
+        
+        <div class="lbl-forgot-pwd">
+          <a>Forgot your password?</a>
+        </div>
+        
+        <div class="btn-signIn">
+          <button class="btn-click-SignIn">SIGN IN</button>
+        </div>
+      
+    </form>
+  </ion-content>

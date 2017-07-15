@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="grid-basic-page cards-bg">
+  <h4 padding>
+    Welcome, {{ account_name }} <br/>
+    Credit {{ cash_wallet }}
+  </h4>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="viewAllDeals()">
+          <ion-card-content>
+            <ion-card-title>
+              <h1>My Deals</h1>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="topUp()">
+          <ion-card-content>
+            <ion-card-title>
+              <h1>Top up</h1>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="withdraw()">
+          <ion-card-content>
+            <ion-card-title>
+              <h1>Withdraw</h1>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="grabbedDeals()">
+          <ion-card-content>
+            <ion-card-title>
+              <h1>Grabbed deals</h1>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="updateProfile()">
+          <ion-card-content>
+            <ion-card-title>
+              <h1>Update Profile</h1>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Withdrawal Request</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form (ngSubmit)="onSubmit()">
+	  <ion-item>
+      <ion-label>My Balance</ion-label>
+      <ion-input type="text" placeholder="Cash Wallet" name="cash_wallet" [(ngModel)]="cash_wallet" value="{{ cash_wallet }}"></ion-input>
+    </ion-item>
+   	<ion-item>
+      <ion-label floating>Withdrawal Amount</ion-label>
+      <ion-input type="text" name="amount" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button color="primary" block>Create</button>
+    </div>
+	</form>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list no-lines>
+	    <form (ngSubmit)="onSubmit()">
+		    <ion-item>
+		      <ion-input type="text" placeholder="Name" name="fname" [(ngModel)]="fname" value="{{ fname }}"></ion-input>
+		    </ion-item>
+		    <ion-item>
+		      <ion-input type="text" placeholder="Bank Name" name="bank_name" [(ngModel)]="bank_name" value="{{ bank_name }}"></ion-input>
+		    </ion-item>
+		    <ion-item>
+		      <ion-input type="text" placeholder="Bank Acc Name" name="bank_account_name" [(ngModel)]="bank_account_name" value="{{ bank_account_name }}"></ion-input>
+		    </ion-item>
+		    <ion-item>
+		      <ion-input type="text" placeholder="Bank Acc No" name="bank_account_number" [(ngModel)]="bank_account_number" value="{{ bank_account_number }}"></ion-input>
+		    </ion-item>
+		    
+		    <div padding>
+			    <button ion-button type="submit" color="primary" block>Update</button>
+			  </div>
+		  </form>
+	</ion-list>
+</ion-content>

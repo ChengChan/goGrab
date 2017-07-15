@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Deals</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+	<ion-card *ngFor="let deal of deals">
+	  <ion-card-content>
+	  	<ion-grid>
+		    <ion-row>
+		      <ion-col>
+		      	<h4>{{ deal.product_name }}</h4>
+            <p>Color: {{ deal.color }}</p>
+            <p>{{ deal.cost }}</p>
+		      </ion-col>
+		      <ion-col>
+            <p>{{ deal.created_at }}</p>
+            <p>Margin: {{ deal.margin }}</p>
+		      </ion-col>
+		    </ion-row>
+		  </ion-grid>
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-fab right bottom>
+	  <button (click)="addNew()" ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,81 @@
+.scroll-content {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.img-bg {
+	background-image: url('../assets/img/background.jpg');
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+.img-logo {
+	height: 70px;
+	width: 200px;
+	opacity: 0.8;
+	margin-bottom: 15px;
+}
+.btn-group-user button {
+  background-color: #6b0103;
+  color: white; 
+ /* float: left;*/
+  border-radius: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 8px 27px;
+}
+.btn-group-user:after {
+  clear: both;
+  display: table;
+}
+.btn-group-user button:not(:last-child) {
+  border-right: none;
+}
+.btn-group-user button:hover {
+  background-color: #c31f26;
+}
+.btn-group-user>.btn-click-maker:last-child:not(:first-child), .btn-group-user>.dropdown-toggle:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-group-user>.btn-click-grabber:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.btn-click-grabber {
+	font-size: 14px;
+}
+.btn-click-maker {
+	font-size: 14px;
+}
+.txt-input-credentials {
+
+}
+.txt-input {
+	/*padding-left: 0px;*/
+  background-color: transparent;
+}
+.txt-input-email {
+	font-size: 12px;
+}
+.txt-input-pwd {
+	font-size: 12px;
+}
+.icon-pwd {
+	color: white;
+}
+.lbl-forgot-pwd a {
+	font-size: 12px;
+	color: grey;
+}
+.btn-signIn button{
+	background-color: #c31f26;
+  color: white;
+  padding: 10px 25px;
+	border-radius: 25px;
+	height: 40px;
+  width: 120px;
+  font-weight:bold;
+  margin-top: 50px;
+}

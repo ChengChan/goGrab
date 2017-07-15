@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Top Up Request</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form>
+	  <ion-item>
+      <ion-label fixed class="lbl-form">Amount:</ion-label>
+      <ion-input no-lines type="text" name="amount" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Balance:</ion-label>
+      <ion-input disabled="true" name="cash_wallet" [(ngModel)]="cash_wallet" value="{{ cash_wallet }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Upload Receipt:</ion-label>
+      <ion-input type="text" name="uploadReceipt" [(ngModel)]="uploadReceipt"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Remarks:</ion-label>
+      <ion-input type="text" name="remarks" [(ngModel)]="remarks"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Requested On:</ion-label>
+      <ion-input type="text" name="requestedOn"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button (click)="onSubmit()" class="btn-submit" ion-button color="primary" block>Request Top Up</button>
+      <button (click)="cancelButton()" ion-button color="light" block>Cancel</button>
+    </div>
+	</form>
+</ion-content>

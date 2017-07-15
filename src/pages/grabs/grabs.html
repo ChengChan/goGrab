@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Grabbed Deals</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+	<ion-card>
+	  <ion-card-content>
+	  	<ion-grid>
+		    <ion-row>
+		      <ion-col>
+		      	<h4></h4>
+            <p></p>
+            <p></p>
+		      </ion-col>
+		      <ion-col>
+            <p></p>
+            <p></p>
+		      </ion-col>
+		    </ion-row>
+		  </ion-grid>
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

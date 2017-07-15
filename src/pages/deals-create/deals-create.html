@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button block (click)="backButton()">
+        <ion-icon class="button-icon">Cancel</ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Deal Request</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>Product</ion-label>
+      <ion-select multiple>
+        <ion-option *ngFor="let product of products" [value]="product.id">{{product.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Color</ion-label>
+      <ion-input type="text" name="color" [(ngModel)]="color"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Tenure</ion-label>
+      <ion-input type="text" name="tenure" [(ngModel)]="tenure"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Cost</ion-label>
+      <ion-input type="text" name="cost" [(ngModel)]="cost"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Margin</ion-label>
+      <ion-input type="text" name="margin" [(ngModel)]="margin"></ion-input>
+    </ion-item>
+ 
+    <div padding>
+      <button ion-button color="primary" block>Create</button>
+    </div>
+	</form>
+</ion-content>
