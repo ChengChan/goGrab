@@ -25,10 +25,10 @@ export class LoginPage {
   }
 
   doLogin() {
-    this.navCtrl.push(Deals);
+    this.navCtrl.setRoot(Deals);
   }
 
   doLogin2() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 }

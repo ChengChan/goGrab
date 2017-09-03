@@ -1,3 +1,18 @@
-.item-inner {
-	border: none;
+page-funds-create {
+	.item-inner {
+		border: none;
+	}
+
+	.btn-camera {
+		background-color: transparent;
+	}
+
+	.img-bg-detail {
+	  background-image: none;
+	}
+
+	.input-area {
+		border: 1px solid #c1c1c1;
+		border-radius: 5px;
+	}
 }

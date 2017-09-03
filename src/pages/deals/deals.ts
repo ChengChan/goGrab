@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http'
-import { IonicPage, NavController, NavParams, AlertController, ToastController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import { DealsCreatePage } from '../deals-create/deals-create';
-import 'rxjs/add/operator/map';
+import { MenuSettingsPage } from '../menu-settings/menu-settings';
+import { LoginPage } from '../login/login';
 import { UtilityService } from '../../app/utility.service';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -11,7 +13,7 @@ import { UtilityService } from '../../app/utility.service';
   templateUrl: 'deals.html',
 })
 export class Deals {
-  
+
   deals = [];
   
   constructor(public navCtrl: NavController, 
@@ -21,30 +23,41 @@ export class Deals {
     public toastCtrl: ToastController,
     public modalCtrl: ModalController,
     public util: UtilityService,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController) {
 
-  	this.loadData();
+  	this.getSalesRecord();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Deals');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(MenuSettingsPage);
+
+    popover.present({
+      ev: myEvent
+    });
   }
 
-  loadData() {
+  backButton() {
+    this.navCtrl.setRoot(LoginPage);
+  }
+
+  pushFive() {
+
+  }
+
+  getSalesRecord() {
     let url = '/getSalesRecord';
     let loading = this.loadingCtrl.create({
       content: 'Loading Please Wait...'
     });
+    let formData = new FormData();
+    formData.append('aut', this.util.getUserMaker());
       
-  	let formData = new FormData();
-    formData.append('aut','maker');
-
     loading.present();
     this.util.httpRequestPostMethod(url, formData)
     .subscribe(
       deal => {
-        this.deals = deal.data; 
-        console.log(deal)
+        this.deals = deal.data;
       },
       error => {
         this.util.showToast(error.statusText);
@@ -56,6 +69,12 @@ export class Deals {
         }, 1000);
       }
     );
+
+    console.log(this.deals)
+  }
+
+  addNew() {
+    this.presentModal();
   }
 
   presentModal() {
@@ -66,14 +85,14 @@ export class Deals {
     profileModal.present();
   }
 
-  doInfinite(infiniteScroll) {
+  doInfinite(infiniteScroll:any) {
     setTimeout(() => {
+      for (let i = 0; i < 5; i++) {
+        this.deals.push(this.deals.length);
+      }
+
       infiniteScroll.complete();
     }, 500);
   }
 
-  addNew() {
-  	this.presentModal();
-  }
-  
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http'
-import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController, PopoverController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
-import 'rxjs/add/operator/map';
 import { UtilityService } from '../../app/utility.service';
+import { MenuSettingsPage } from '../menu-settings/menu-settings';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import { UtilityService } from '../../app/utility.service';
   templateUrl: 'deals-create.html',
 })
 export class DealsCreatePage {
+  
   deal = {}
   products = [];
 	product_id : any;
@@ -27,20 +29,25 @@ export class DealsCreatePage {
     public builder: FormBuilder,
     public toastCtrl: ToastController,
     private viewCtrl: ViewController,
-    public util: UtilityService) {
+    public util: UtilityService,
+    public popoverCtrl: PopoverController) {
 
     this.getProducts();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DealsCreatePage');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(MenuSettingsPage);
+
+    popover.present({
+      ev: myEvent
+    });
   }
 
   onSubmit() {
     let url = '/createSales';
   	let formData = new FormData();
 
-   	formData.append('aut','maker');
+   	formData.append('aut', this.util.getUserMaker());
    	formData.append('product_id', this.product_id);
    	formData.append('color', this.color);
    	formData.append('tenure', this.tenure);
@@ -70,7 +77,7 @@ export class DealsCreatePage {
     let url = '/getProductList';
     let formData = new FormData();
     
-    formData.append('aut','maker');
+    formData.append('aut', this.util.getUserMaker());
 
     this.util.httpRequestPostMethod(url, formData)
     .subscribe(
@@ -87,5 +94,14 @@ export class DealsCreatePage {
 
   backButton() {
     this.viewCtrl.dismiss();
-  }s
+  }
+
+  logForm() {	
+  	console.log(this.deal)
+  }
+
+  cancelButton() {
+    this.viewCtrl.dismiss();
+  }
+
 }

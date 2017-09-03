@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Update Bank Info
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon class="icon-menu" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="img-bg-detail">
+	<ion-list no-lines>
+    <form>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Bank Name: </ion-label>
+	      <ion-input class="input-line" type="text" name="bank_name" [(ngModel)]="bank_name" value="{{ bank_name }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Account Name: </ion-label>
+	      <ion-input class="input-line" type="text" name="bank_account_name" [(ngModel)]="bank_account_name" value="{{ bank_account_name }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Account Holder Name: </ion-label>
+	      <ion-input class="input-line" type="text" name="bank_account_number" [(ngModel)]="bank_account_number" value="{{ bank_account_number }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Bank Branch Address: </ion-label>
+	      <ion-input class="input-line" type="text" name="bank_branch_address" [(ngModel)]="bank_branch_address" value="{{ bank_branch_address }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Bank SWIFT Code: </ion-label>
+	      <ion-input class="input-line" type="text" name="bank_swift_code" [(ngModel)]="bank_swift_code" value="{{ bank_swift_code }}"></ion-input>
+	    </ion-item>
+		  
+	    <ion-footer>
+	      <div padding>
+	        <button (click)="onSubmit()" class="btn-submit" ion-button color="primary" block>UPDATE</button>
+	        <button (click)="cancelButton()" class="btn-cancel" ion-button color="light" block>CANCEL</button>
+	      </div>
+	    </ion-footer>
+		</form>
+	</ion-list>
+</ion-content>

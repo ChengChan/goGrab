@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button (click)="backButton()">
+          <ion-icon class="icon-back" name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        Upload Top Up Receipt
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="presentPopover($event)">
+          <ion-icon class="icon-menu" name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="img-bg-detail">
+	<form>
+    <ion-item>
+      <div class="custom_file_upload">
+        <label class="lbl-form">Upload Receipt:</label>
+        <input type="text" class="file-text" value="Choose File" name="file_info">
+        <div class="file_upload">
+          <input type="file" class="file-input" id="file_upload" name="file_upload" (change)="fileUpload($event)">
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-footer>
+      <div padding>
+        <button (click)="uploadReceipt(fund_id)" class="btn-submit" ion-button color="primary" block>UPLOAD</button>
+        <button (click)="cancelButton()" class="btn-cancel" ion-button color="light" block>CANCEL</button>
+      </div>
+    </ion-footer>
+	</form>
+</ion-content>

@@ -1,11 +1,14 @@
 {
-  "name": "myApp",
-  "app_id": "03af651c",
+  "name": "go grab",
+  "app_id": "55f9c8a9",
   "type": "ionic-angular",
   "proxies": [
     {
       "path": "/mg",
       "proxyUrl": "https://gocapi.com/mg"
     }
-  ]
+  ],
+  "integrations": {
+    "cordova": {}
+  }
 }

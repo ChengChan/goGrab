@@ -16,16 +16,29 @@
   ion-card {
     background-color: #fff;
     width: 100%;
-    height: 100%;
-    margin: 0;
+    margin: 10px 0 0 0;
     position: relative;
-    border-radius: 5px;
-    /*box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);*/
     transition: 0.3s;
   }
+  
+  .profile {
+    box-shadow: none;
+    border-top: 1px solid #dddcdf;
+    border-bottom: 1px solid #dddcdf;
+  }
 
-  ion-card:hover{
-    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+  .menu {
+    box-shadow: none;
+    border-top: 1px solid #dddcdf;
+    /*border-bottom: 1px solid grey;*/
+  }
+
+  ion-card .user-profile {
+    padding-bottom: 10px;
+  }
+
+  ion-card .menu {
+    box-shadow: none;
   }
 
   ion-card-title h1{
@@ -35,6 +48,39 @@
     margin-top: 20%; 
     margin-bottom: 20%;
   }
+  .user-profile {
+    display: block;;
+  }
+
+  .avatar {
+    top: 50%;
+    margin-top: -64px;
+    right: 1.5rem;
+    width: 90px;
+    height: 90px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+  }
+
+  .account p{
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .lbl {
+    font-size: 1.4rem;
+  }
+
+  .icon-menu-item {
+    
+  }
 
 }
+
+
 

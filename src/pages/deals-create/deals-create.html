@@ -1,41 +1,51 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons end>
-      <button ion-button block (click)="backButton()">
-        <ion-icon class="button-icon">Cancel</ion-icon>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="backButton()">
+        <ion-icon class="icon-back" name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Deal Request</ion-title>
+    <ion-title>
+      Deal Request
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon class="icon-menu" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-	<form (ngSubmit)="onSubmit()">
+<ion-content class="img-bg-detail">
+	<form>
     <ion-item>
-      <ion-label>Product</ion-label>
-      <ion-select multiple>
+      <ion-label fixed class="lbl-form">Product</ion-label>
+      <ion-select multiple="false">
         <ion-option *ngFor="let product of products" [value]="product.id">{{product.name}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label floating>Color</ion-label>
+      <ion-label fixed class="lbl-form">Color</ion-label>
       <ion-input type="text" name="color" [(ngModel)]="color"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Tenure</ion-label>
+      <ion-label fixed class="lbl-form">Tenure</ion-label>
       <ion-input type="text" name="tenure" [(ngModel)]="tenure"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Cost</ion-label>
+      <ion-label fixed class="lbl-form">Cost</ion-label>
       <ion-input type="text" name="cost" [(ngModel)]="cost"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Margin</ion-label>
+      <ion-label fixed class="lbl-form">Margin</ion-label>
       <ion-input type="text" name="margin" [(ngModel)]="margin"></ion-input>
     </ion-item>
- 
-    <div padding>
-      <button ion-button color="primary" block>Create</button>
-    </div>
+
+    <ion-footer>
+      <div padding>
+        <button (click)="onSubmit()" class="btn-submit" ion-button color="primary" block>CREATE DEALS</button>
+        <button (click)="cancelButton()" class="btn-cancel" ion-button color="light" block>CANCEL</button>
+      </div>
+    </ion-footer>
 	</form>
 </ion-content>

@@ -10,9 +10,10 @@
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
- 
+  
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
+  <!-- <script src="assets/js/N.js"></script> -->
 
   <!-- un-comment this code to enable service worker
   <script>
@@ -22,7 +23,6 @@
         .catch(err => console.error('Error', err));
     }
   </script>-->
-
   <link href="build/main.css" rel="stylesheet">
 
 </head>
@@ -39,3 +39,18 @@
 
 </body>
 </html>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD0H9j8qwZ8lFq5eaQnwdAD-gNw7x1Nzos",
+    authDomain: "gograb-9eb6c.firebaseapp.com",
+    databaseURL: "https://gograb-9eb6c.firebaseio.com",
+    projectId: "gograb-9eb6c",
+    storageBucket: "gograb-9eb6c.appspot.com",
+    messagingSenderId: "372525186047"
+  };
+  firebase.initializeApp(config);
+</script>

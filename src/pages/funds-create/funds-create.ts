@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http'
-import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController, Platform, ActionSheetController, LoadingController, PopoverController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { UtilityService } from '../../app/utility.service';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { ActionSheet } from '@ionic-native/action-sheet';
+import { MenuSettingsPage } from '../menu-settings/menu-settings';
 import 'rxjs/add/operator/map';
 
 @IonicPage()
@@ -13,11 +13,13 @@ import 'rxjs/add/operator/map';
   templateUrl: 'funds-create.html',
 })
 export class FundsCreatePage {
-	fund = {};
-  funds = [];
-	amount : any;
+	amount: any;
+  id: any;
+  receiptURI: any;
+  imageReceipt: any;
   profiles = [];
   cash_wallet: any;
+  imageURI: any;
 
   constructor(public navCtrl: NavController, 
   	public navParams: NavParams,
@@ -26,21 +28,37 @@ export class FundsCreatePage {
     public builder: FormBuilder,
     public toastCtrl: ToastController,
     private viewCtrl: ViewController,
-    private camera: Camera,
-    public util: UtilityService) {
+    private actionSheet: ActionSheet,
+    public platform: Platform, 
+    private actionSheetCtrl: ActionSheetController,
+    public util: UtilityService,
+    public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController) {
 
-    this.loadData();
+    this.viewProfile();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FundsCreatePage');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(MenuSettingsPage);
+
+    popover.present({
+      ev: myEvent
+    });
   }
 
-  loadData() {
+  backButton() {
+    this.viewCtrl.dismiss();
+  }
+
+  cancelButton() {
+    this.viewCtrl.dismiss();
+  }
+
+  viewProfile() {
     let url = '/viewProfile';
     let data = new FormData();
 
-    data.append('aut','grabber');
+    data.append('aut', this.util.getUserGrabber());
 
     this.util.httpRequestPostMethod(url, data)
     .subscribe(
@@ -57,58 +75,29 @@ export class FundsCreatePage {
     );
   }
 
-  onSubmit() {
+  createFunding() {
     let url = '/createFunding';
-  	let data = new FormData();
+    let formData = new FormData();
 
-   	data.append('aut','grabber');
-   	data.append('amount', this.amount);
+    formData.append('aut', this.util.getUserGrabber());
+    formData.append('amount', this.amount);
 
-    return this.http.post(url, data)
-	  .subscribe(
-	  	data => {
-        console.log(data) }, 
-	  	error => { 
-        this.util.showToast(error.statusText); 
-
-        console.log(error); }
-	  );
-  }
-
-  cancelButton() {
-    this.viewCtrl.dismiss();
-  }
-
-  add() {
-    let prompt = this.alertCtrl.create({
-      title: 'Fund',
-      message: "A",
-      inputs: [
-        {
-          name: 'title',
-          placeholder: 'Title'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            'ads'
-          }
+    this.util.httpRequestPostMethod(url, formData)
+    .subscribe(
+      data => {
+        if(data.status < 1) {
+          this.util.showToast(data.msg);
+          console.log(data)
+        } else {
+          this.util.showToast('Top Up was successfully'); 
         }
-      ]
-    });
-    prompt.present();
-  }
-
-  logForm() {	
-  	console.log(this.fund)
+        console.log(formData);
+      }, 
+      error => { 
+        this.util.showToast(error.statusText); 
+        console.log(error); 
+      }
+    );
   }
 
 }

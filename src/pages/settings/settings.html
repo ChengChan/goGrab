@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button (click)="backButton()">
+          <ion-icon class="icon-back" name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        Settings
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="presentPopover($event)">
+          <ion-icon class="icon-menu" name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="img-bg-detail">
+  <ion-list>
+    <ion-item-divider color="light"></ion-item-divider>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="notifications"></ion-icon>
+        Push Notification
+      </ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

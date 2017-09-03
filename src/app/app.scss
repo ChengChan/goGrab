@@ -15,33 +15,180 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// Toolbar
+@font-face {
+    font-family: 'SairaSemiCondensed';
+    src: url('fonts/SairaSemiCondensed-Regular.ttf') format('truetype');
+}
+
+/** 
+* Begin of ios css 
+**/
+.popover-ios .popover-content {
+	border-radius: 0px;
+	background-color: none;
+}
+
+.popover-ios .popover-arrow {
+	/*display: none;*/
+}
+
+.list-ios > .item-block:first-child{
+	/*border-top: none;*/
+}
+
+.popover-ios .popover-content {
+  top: 0px;
+  width: 220px;
+}
+
+.toggle-ios.toggle-checked .toggle-icon {
+  background-color: #c12227;
+}
+
+.popover-ios .popover-arrow::after {
+	background: #c12227;
+}
+
+.label-ios {
+  margin: 0px 0px 0px 0px;
+}
+
+.label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input {
+	margin-left: 0px;
+}
+/** 
+* End of ios css
+**/
+
+// Begin of Toolbar
 .toolbar-background {
   background-color: #790609;
 }
+
 .toolbar-title {
+	font-size: 1.8rem;
 	color: white;
+	font-weight: normal;
 }
+// End of Toolbar
+
 .back-button {
 	color: white;
 }
 
-// Form
-.lbl-form {
-	font-size: 14px;
+.back-button-icon {
+	font-size: 32px;
 }
+
+.back-button-text {
+	display: none;
+}
+
+// Begin of Form
+.lbl-form {
+	font-size: 1.4rem;
+	-webkit-flex: 0 0 200px;
+  -ms-flex: 0 0 200px;
+  /*flex: 0 0 150px !important;*/
+  width: 150px !important;
+  /*min-width: 150px !important;*/
+  max-width: 150px !important;
+}
+
+.lbl-requested-date {
+	font-size: 1.4rem;
+	margin-left: 0px;
+}
+
 .item-ios.item-block .item-inner {
 	border: none;
 }
+
 .text-input {
 	font-size: 14px;
-	border-bottom: 1px solid black;
 }
+
 .btn-submit {
+	background-color: #790609;
+	font-size: 16px;
+	border-radius: 10px;
+}
+
+.btn-submit:active {
 	background-color: #790609;
 }
 
-// FAB
+.btn-submit.activated {
+	background-color: #790609;
+}
+
+.btn-cancel {
+	font-size: 16px;
+	border-radius: 10px;
+	background-color: #c2c2c0;
+	color: #ffffff;
+}
+
+.input-line {
+	border-bottom: 1px solid #c1c1c1;
+}
+// End of Form
+
+// Begin of FAB
 .fab {
 	background-color: #790609;
-} 
+	box-shadow: 3px 3px 3px #888888;
+}
+
+.fab:active {
+	background-color: #790609;
+}
+
+.fab.activated {
+	background-color: #790609;
+}
+
+.fab ion-icon {
+	font-size: 4rem;
+}
+// End of FAB
+
+// Card
+.card-content {
+	padding: 5px 5px 5px 5px;
+}
+
+.card-text-right {
+	float:right; 
+	font-weight: bold;
+}
+
+.col-left p {
+}
+
+.col-right p {
+	font-weight: bold;
+}
+
+.img-bg-detail {
+  background-image: url('../assets/img/bg-img/00-detail-bg.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.icon {
+	
+}
+
+.icon-back {
+	color: white;
+	font-size: 32px;
+}
+
+.icon-menu {
+	color: white;
+}
+
+.icon-menu-item {
+	padding-right: 10px;
+}

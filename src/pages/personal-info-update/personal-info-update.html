@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Update Personal Info
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon class="icon-menu" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="img-bg-detail">
+	<ion-list no-lines>
+    <form>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Full Name: </ion-label>
+	      <ion-input class="input-line" type="text" name="fname" [(ngModel)]="fname" value="{{ fname }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">IC Number / Passport Number: </ion-label>
+	      <ion-input class="input-line" type="text" name="ic" [(ngModel)]="ic" value="{{ ic }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Mobile Number: </ion-label>
+	      <ion-input class="input-line" type="text" name="mobile" [(ngModel)]="mobile" value="{{ mobile }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Address Line 1</ion-label>
+	      <ion-input class="input-line" type="text" name="addressline1" [(ngModel)]="addressline1" value="{{ addressline1 }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Address Line 2: </ion-label>
+	      <ion-input class="input-line" type="text" name="addressline2" [(ngModel)]="addressline2" value="{{ addressline2 }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">Postcode: </ion-label>
+	      <ion-input class="input-line" type="text" name="postcode" [(ngModel)]="postcode" value="{{ postcode }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">State: </ion-label>
+	      <ion-input class="input-line" type="text" name="state" [(ngModel)]="state" value="{{ state }}"></ion-input>
+	    </ion-item>
+	    <ion-item>
+	    	<ion-label fixed class="lbl-form">City: </ion-label>
+	      <ion-input class="input-line" type="text" name="city" [(ngModel)]="city" value="{{ city }}"></ion-input>
+	    </ion-item>
+	     <ion-item>
+	    	<ion-label fixed class="lbl-form">Country: </ion-label>
+	      <ion-input class="input-line" type="text" name="country" [(ngModel)]="country" value="{{ country }}"></ion-input>
+	    </ion-item>
+	    
+	    <ion-footer>
+	      <div padding>
+	        <button (click)="onSubmit()" class="btn-submit" ion-button color="primary" block>UPDATE</button>
+	        <button (click)="cancelButton()" class="btn-cancel" ion-button color="light" block>CANCEL</button>
+	      </div>
+	    </ion-footer>
+		</form>
+	</ion-list>
+</ion-content>

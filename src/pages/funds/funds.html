@@ -1,22 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Top Up History</ion-title>
-  </ion-navbar>
+	<ion-toolbar>
+	    <ion-buttons start>
+	      <button ion-button (click)="backButton()">
+	        <ion-icon class="icon-back" name="arrow-back"></ion-icon>
+	      </button>
+	    </ion-buttons>
+	    <ion-title>
+	      Top Up History
+	    </ion-title>
+	    <ion-buttons end>
+	      <button ion-button icon-only (click)="showMenuSettings($event)">
+	        <ion-icon class="icon-menu" name="menu"></ion-icon>
+	      </button>
+	    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content class="cards-bg">
-	<ion-card *ngFor="let fund of funds">
+<ion-content class="img-bg-detail">
+	<ion-card *ngFor="let fund of funds" (click)="goToUploadReceipt(fund.id)">
 	  <ion-card-content>
 	  	<ion-grid>
-		    <ion-row>
-		      <ion-col>
-		      	<h4>{{ fund.id }}</h4>
-            <p>{{ fund.amount }}</p>
-            <p>{{ fund.status }}</p>
-		      </ion-col>
-		      <ion-col>
-            <p>{{ fund.created_at }}</p>
-            <p></p>
+		    <ion-row class="cards">
+		    	<ion-col>
+		        <p>TOP UP CODE:<span class="card-text-right">#{{ fund.id }}</span></p>
+		        <p>AMOUNT:<span class="card-text-right">{{ fund.amount }}</span></p>
+		        <p>STATUS:<span class="card-text-right">{{ fund.status }}</span></p>
+		        <p>DATE:<span class="card-text-right">{{ fund.created_at }}</span></p>
 		      </ion-col>
 		    </ion-row>
 		  </ion-grid>

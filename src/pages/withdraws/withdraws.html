@@ -1,23 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Withdrawal History</ion-title>
+    <ion-title>
+      Withdrawal History
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon class="icon-menu" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cards-bg">
+<ion-content class="img-bg-detail">
 	<ion-card *ngFor="let withdraw of withdraws">
 	  <ion-card-content>
 	  	<ion-grid>
-		    <ion-row>
-		      <ion-col>
-		      	<h4>{{ withdraw.id }}</h4>
-            <p>{{ withdraw.amount }}</p>
-            <p>{{ withdraw.status }}</p>
-		      </ion-col>
-		      <ion-col>
-            <p>{{ withdraw.created_at }}</p>
-            <p></p>
-		      </ion-col>
+		    <ion-row class="cards">
+		    	<ion-col>
+		      	<p>No <span class="card-text-right">{{ withdraw.id }}</span></p>
+            <p>AMOUNT <span class="card-text-right">{{ withdraw.amount }}</span></p>
+            <p>STATUS <span class="card-text-right">{{ withdraw.status }}</span></p>
+            <p>DATE <span class="card-text-right">{{ withdraw.created_at }}</span></p>
+          </ion-col>
 		    </ion-row>
 		  </ion-grid>
 	  </ion-card-content>
@@ -34,3 +38,4 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+

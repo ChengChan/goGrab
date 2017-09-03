@@ -1,22 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Withdrawal Request</ion-title>
+    <ion-title>
+      Withdrawal Request
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon class="icon-menu" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-	<form (ngSubmit)="onSubmit()">
-	  <ion-item>
-      <ion-label>My Balance</ion-label>
-      <ion-input type="text" placeholder="Cash Wallet" name="cash_wallet" [(ngModel)]="cash_wallet" value="{{ cash_wallet }}"></ion-input>
+<ion-content class="img-bg-detail">
+	<form>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Amount:</ion-label>
+      <ion-input class="input-line" no-lines type="text" name="amount" [(ngModel)]="amount"></ion-input>
     </ion-item>
-   	<ion-item>
-      <ion-label floating>Withdrawal Amount</ion-label>
-      <ion-input type="text" name="amount" [(ngModel)]="amount"></ion-input>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Balance:</ion-label>
+      <ion-input disabled="true" name="cash_wallet" [(ngModel)]="cash_wallet" value="{{ cash_wallet }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Remarks:</ion-label>
+      <ion-textarea class="textarea-input" type="text" name="remarks" [(ngModel)]="remarks"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed class="lbl-form">Requested On:</ion-label>
+      <ion-input type="text" name="requested_on"></ion-input>
     </ion-item>
 
-    <div padding>
-      <button ion-button color="primary" block>Create</button>
-    </div>
+    <ion-footer>
+      <div padding>
+        <button (click)="onSubmit()" class="btn-submit" ion-button color="primary" block>Create</button>
+        <button (click)="cancelButton()" class="btn-cancel" ion-button color="light" block>Cancel</button>
+      </div>
+    </ion-footer>
 	</form>
 </ion-content>

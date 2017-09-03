@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http'
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController, LoadingController, PopoverController} from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import 'rxjs/add/operator/map';
+import { UtilityService } from '../../app/utility.service';
+import { MenuSettingsPage } from '../menu-settings/menu-settings';
 
 @IonicPage()
 @Component({
@@ -20,69 +22,95 @@ export class WithdrawsCreatePage {
   	public http: Http,
     public alertCtrl: AlertController,
     public builder: FormBuilder,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public util: UtilityService,
+    public loadingCtrl: LoadingController,
+    private viewCtrl: ViewController,
+    public popoverCtrl: PopoverController) {
 
     this.loadData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WithdrawsCreatePage');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(MenuSettingsPage);
+
+    popover.present({
+      ev: myEvent
+    });
   }
 
   loadData() {
-    let data = new FormData();
-    data.append('aut','grabber');
+    let url = "/viewProfile";
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
 
-    return this.http.post('https://gocapi.com/mg/business/viewProfile', data)
-    .map(res => res.json())
+    let formData = new FormData();
+    formData.append('aut', this.util.getUserGrabber());
+
+    this.util.httpRequestPostMethod(url, formData)
     .subscribe(
       profile => {
         this.profiles = profile.data;
         this.cash_wallet = profile.data.cash_wallet;
 
-        console.log(this.profiles) }, 
-      error => { this.showToast(error.statusText); console.log(error); },
-      () => console.log('Profiles Response Complete')
+        console.log(this.profiles) 
+      }, 
+      error => { 
+        this.util.showToast(error.statusText); 
+        console.log(error); 
+      },
+      () => {
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000);
+      }
     );
   }
 
   onSubmit() {
-  	let data = new FormData();
-   	data.append('aut','grabber');
-   	data.append('amount', this.amount);
+    let url = "/createWithdrawalRequest";
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
 
-    return this.http.post('https://gocapi.com/mg/business/createWithdrawalRequest', data)
-    .map(res => res.json())
+  	let formData = new FormData();
+   	formData.append('aut', this.util.getUserGrabber());
+   	formData.append('amount', this.amount);
+
+    this.util.httpRequestPostMethod(url, formData)
 	  .subscribe(
 	  	data => {
         if(data.status < 1) {
-          this.showToast(data.msg);
+          this.util.showToast(data.msg);
           console.log(data)
         } else {
-          this.showToast('Fund was successfully'); 
+          this.util.showToast('Withdrawal was successfully'); 
         }
         
         console.log(data) }, 
-	  	error => { this.showToast(error.statusText); console.log(error); }
+	  	error => { 
+        this.util.showToast(error.statusText); 
+        console.log(error); 
+      },
+      () => {
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000);
+      }
 	  );
   }
 
-  showToast(msg: string) {
-	  let toast = this.toastCtrl.create({
-	    message: msg,
-	    duration: 3000,
-	    position: 'top'
-	  });
-
-	  toast.onDidDismiss(() => {
-	    console.log('Dismissed toast');
-	  });
-
-	  toast.present();
-	}
-
   logForm() {	
   	console.log(this.withdraw)
+  }
+
+  cancelButton() {
+    this.viewCtrl.dismiss();
+  }
+
+  backButton() {
+    this.viewCtrl.dismiss();
   }
 
 }

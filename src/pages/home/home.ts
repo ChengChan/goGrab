@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http'
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, LoadingController, PopoverController } from 'ionic-angular';
 import { DealsUngrabPage } from '../deals-ungrab/deals-ungrab';
-import { ProfilesUpdatePage } from '../profiles-update/profiles-update'; 
+import { ProfilesUpdatePage } from '../profiles-update/profiles-update';
 import { FundsPage } from '../funds/funds';
 import { WithdrawsPage } from '../withdraws/withdraws';
-import { GrabsPage } from '../grabs/grabs';
+import { GrabsPage } from '../grabs/grabs'; 
+import { LoginPage } from '../login/login';
+import { MenuSettingsPage } from '../menu-settings/menu-settings';
+import { UtilityService } from '../../app/utility.service';
 import 'rxjs/add/operator/map';
+import { Network } from '@ionic-native/network';
 
 @Component({
   selector: 'page-home',
@@ -22,42 +26,71 @@ export class HomePage {
     public navParams: NavParams, 
     public http: Http,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController) {
+    public util: UtilityService,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
+    public popoverCtrl: PopoverController,
+    private network: Network) {
 
-    this.loadData();
-
+    this.viewProfile();
   }
 
-  loadData() {
-    let data = new FormData();
-    data.append('aut','grabber');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(
+      MenuSettingsPage, 
+      {showBackdrop: true, enableBackdropDismiss: true}
+    );
 
-    return this.http.post('https://gocapi.com/mg/business/viewProfile', data)
-    .map(res => res.json())
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  ionViewDidEnter() {
+    this.network.onConnect().subscribe(data => {
+      console.log(data)
+      this.displayNetworkUpdate(data.type);
+    }, error => console.error(error));
+   
+    this.network.onDisconnect().subscribe(data => {
+      console.log(data)
+      this.displayNetworkUpdate(data.type);
+    }, error => console.error(error));
+  }
+
+  displayNetworkUpdate(connectionState: string){
+    let networkType = this.network.type
+    this.util.alertConnectionStatus(connectionState);
+  }
+
+  viewProfile() {
+    let url = "/viewProfile";
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+
+    let formData = new FormData();
+    formData.append('aut', this.util.getUserGrabber());
+
+    loading.present();
+    this.util.httpRequestPostMethod(url, formData)
     .subscribe(
-      profile => { 
+      profile => {
         this.profiles = profile.data;
         this.account_name = profile.data.account_name;
         this.cash_wallet = profile.data.cash_wallet;
         
         console.log(this.profiles) }, 
-      error => { this.showToast(error.statusText); console.log(error); },
-      () => console.log('Profiles Response Complete')
+      error => { 
+        this.util.showToast(error.statusText); 
+        console.log(error); 
+      },
+      () => {
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000);
+      }
     );
-  }
-
-  showToast(msg: string) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'top'
-    });
-
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
   }
 
   viewAllDeals() {
@@ -79,4 +112,8 @@ export class HomePage {
   updateProfile() {
   	this.navCtrl.push(ProfilesUpdatePage);
   }
+
+  backButton() {
+    this.navCtrl.setRoot(LoginPage);
+  }  
 }
